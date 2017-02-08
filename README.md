@@ -5,8 +5,9 @@ Tea Timer is a simple timer application developed using HTML, CSS, and Javascrip
 
 ##Running the application
 1. Simply click the type of tea you want to drink: black, white, or green.
-2. Click START
-3. When timer is finished, a popup will notify you that your tea is done
+2. Adjust time if necessary
+3. Click START
+4. When timer is finished, a popup will notify you that your tea is done
 
 ##TODO
 1. Add sound at end of timer
@@ -16,3 +17,4 @@ Tea Timer is a simple timer application developed using HTML, CSS, and Javascrip
 5. Add pie slice shading
 6. Improve design
 7. Add favicon
+8. Add header and footer
