@@ -15,6 +15,6 @@ Tea Timer is a simple timer application developed using HTML, CSS, and Javascrip
 3. ~~Add up and down buttons to adjust time~~
 4. Add URL parameters
 5. Add pie slice shading
-6. Improve design
-7. Add favicon
+6. Improve layout
+7. ~~Add favicon~~
 8. Add header and footer

@@ -7,12 +7,12 @@ $(document).ready(function() {
 	disp_timer(min, sec);
 
 // hovering
-	$('.left, .right, .center').mouseenter(function() {
+	$('.tea_button, #start').mouseenter(function() {
 		if (!$(this).hasClass("highlight")) {
 			$( this ).css({"opacity" : "0.5", "cursor" : "pointer"})
 		}
 	})
-	$('.left, .right, .center').mouseleave(function() {
+	$('.tea_button, #start').mouseleave(function() {
 		$(this).css({"opacity" : "1", "cursor" : "default"})
 	})
 
@@ -100,19 +100,28 @@ $(document).ready(function() {
 	$('#start').one("click", function() {
 		if (ready) {
 			// initialize
-			$(this).css("opacity", "1")
-			$(this).addClass("highlight")
-			$('.tea_button').off("click")
 			var start_time = new Date();
 			var minsec = (min*60) + sec
 			var add_time = seconds_to_milliseconds(minsec);
 			var end_time = new Date(start_time.getTime() + add_time);
 			finished = false;
 
+			// adjust hover highlighting
+			$(this).css("opacity", "1")
+			$(this).addClass("highlight")
+			$('.tea_button').off("click")
+			$('.tea_button').mouseenter(function() {
+				$(this).css({"opacity" : "1", "cursor" : "default"})
+			})
+			$('#stop').mouseenter(function() {
+				$(this).css({"opacity" : "0.5", "cursor" : "pointer"})
+			})
+			$('#stop').mouseleave(function() {
+				$(this).css({"opacity" : "1", "cursor" : "default"})
+			})
+
 			// hide time adjust buttons
 			$('.adjust').css({"color" : "#57652A;", "cursor" : "default"})
-
-
 
 			// disable tea_buttons
 			$('.tea_buttons').off("click")
@@ -147,9 +156,20 @@ $(document).ready(function() {
 			// click stop button
 			$('#stop').on("click", function() {
 				ready = false;
+				$(this).mouseenter(function() {
+					$(this).css({"opacity" : "1", "cursor" : "default"})
+				})
+				$(this).css("opacity", "1");
 				$(this).addClass("highlight");
-				$('.tea_button').removeClass("highlight");
 				disp_timer(min, sec);
+
+				$('#refresh').mouseenter(function() {
+					$(this).css({"opacity" : "0.5", "cursor" : "pointer"})
+				})
+				$('#refresh').mouseleave(function() {
+					$(this).css({"opacity" : "1", "cursor" : "default"})
+				})
+
 				// click refresh button
 				$('#refresh').on("click", function() {
 					/* var min = 0;
