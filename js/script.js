@@ -6,6 +6,22 @@ $(document).ready(function() {
 
 	disp_timer(min, sec);
 
+// hovering
+	$('.left, .right, .center').mouseenter(function() {
+		if (!$(this).hasClass("highlight")) {
+			$( this ).css({"opacity" : "0.5", "cursor" : "pointer"})
+		}
+	})
+	$('.left, .right, .center').mouseleave(function() {
+		$(this).css({"opacity" : "1", "cursor" : "default"})
+	})
+
+// click any tea button
+	$('.tea_button').on("click", function() {
+		$(this).css({"opacity" : "1"})
+		$('.adjust').css({"color" : "white", "cursor" : "pointer"})
+	})
+
 // click black tea button
 	$('#black').on("click", function() {
 		$('.tea_button').removeClass("highlight")
@@ -37,10 +53,54 @@ $(document).ready(function() {
 		ready = true;
 	})
 
+// adjust time
+	$('#min_plus').on("click", function() {
+		if (ready) {
+			if (min < 59) {
+				min += 1;
+			} else (min = 59)
+			disp_timer(min, sec);
+		}
+	})
+	$('#min_minus').on("click", function() {
+		if (ready) {
+			if (min > 0) {
+				min -= 1;
+			} else (min = 0)
+			disp_timer(min, sec);
+		}
+	})
+	$('#sec_plus').on("click", function() {
+		if (ready) {
+			if (sec === 55 && min < 59) {
+				min += 1;
+				sec = 0;
+			}
+			else if (sec < 59) {
+				sec += 5;
+			}
+			else (sec = 59)
+			disp_timer(min, sec);
+		}
+	})
+	$('#sec_minus').on("click", function() {
+		if (ready) {
+			if (sec === 0 && min > 0) {
+				min -= 1;
+				sec = 55;
+			}
+			else if (sec > 1) {
+				sec -= 5;
+			} else (sec = 0)
+			disp_timer(min, sec);
+		}
+	})
+
 // click start button, start timer
-	$('#start').click(function() {
+	$('#start').one("click", function() {
 		if (ready) {
 			// initialize
+			$(this).css("opacity", "1")
 			$(this).addClass("highlight")
 			$('.tea_button').off("click")
 			var start_time = new Date();
@@ -48,6 +108,14 @@ $(document).ready(function() {
 			var add_time = seconds_to_milliseconds(minsec);
 			var end_time = new Date(start_time.getTime() + add_time);
 			finished = false;
+
+			// hide time adjust buttons
+			$('.adjust').css({"color" : "#57652A;", "cursor" : "default"})
+
+
+
+			// disable tea_buttons
+			$('.tea_buttons').off("click")
 
 			// update timer display
 			update_timer = function() {
@@ -67,7 +135,7 @@ $(document).ready(function() {
 					})
 				}
 				else if (new Date() > end_time && finished === false) {
-						alert("Tea is Done!")
+						alert("Your Tea is Done!")
 						$('#stop').off("click")
 						clearInterval(run)
 						finished = true;
@@ -75,29 +143,31 @@ $(document).ready(function() {
 			}
 			// start timer countdown
 			setInterval(run, 100);
+
+			// click stop button
+			$('#stop').on("click", function() {
+				ready = false;
+				$(this).addClass("highlight");
+				$('.tea_button').removeClass("highlight");
+				disp_timer(min, sec);
+				// click refresh button
+				$('#refresh').on("click", function() {
+					/* var min = 0;
+					var sec = 0;
+					disp_timer(min, sec);
+					var ready = false;
+					$('.tea_button').removeClass("highlight")
+					$('.control').removeClass("highlight") */
+					location.reload();
+				})
+			})
 		} // end if
 	}) // end start.click
 
 
-	// click stop button
-	$('#stop').on("click", function() {
-		ready = false;
-		$(this).addClass("highlight");
-		$('.tea_button').removeClass("highlight");
-		disp_timer(min, sec);
-		//$('.tea_button').on("click");
-	})
 
-	// click refresh button
-	$('#refresh').on("click", function() {
-		/* var min = 0;
-		var sec = 0;
-		disp_timer(min, sec);
-		var ready = false;
-		$('.tea_button').removeClass("highlight")
-		$('.control').removeClass("highlight") */
-		location.reload();
-	})
+
+
 
 }) // end doc.ready
 

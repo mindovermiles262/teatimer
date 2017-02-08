@@ -28,6 +28,13 @@ body {
   color: white;
   cursor: default;
   font-family: 'Della Respira', serif;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
 }
 #wrapper {
   min-width: 450px;
@@ -51,7 +58,6 @@ body {
   border-radius: 5px;
   margin-top: 2px;
   margin-left: 25px;
-  border: 1px solid black;
 }
 .right {
   display: inline-block;
@@ -65,7 +71,6 @@ body {
   border-radius: 5px;
   margin-top: 2px;
   margin-right: 25px;
-  border: 1px solid black;
 }
 .center {
   display: inline-block;
@@ -79,12 +84,11 @@ body {
   padding: 3px 5px 3px 5px;
   border-radius: 5px;
   margin-top: 2px;
-  border: 1px solid black;
 }
-.right:hover, .left:hover, .center:hover {
+/*.right:hover, .left:hover, .center:hover {
   opacity: 0.5;
   cursor: pointer;
-}
+} */
 
 /* --- TEA TYPES --- */
 
@@ -109,20 +113,55 @@ body {
 
 /* --- TIMER DISPLAY --- */
 
+#min_plusminus {
+  height:100px;
+  display: inline-block;
+  position: absolute;
+  width: 100px;
+}
+#min_plusminus li {
+  display: block;
+  text-align: center;
+  vertical-align: middle;
+  float: right;
+  width: 20px;
+  line-height: 40px;
+  font-size: 36px;
+  padding: 3px 5px 3px 5px;
+  border-radius: 5px;
+  margin-top: 1px;
+  margin-left: 35px;
+  font-family: 'Arapey', serif;
+}
+#sec_plusminus {
+  height:100px;
+  display: inline-block;
+  position: relative;
+  float: right;
+  width: 110px;
+}
+#sec_plusminus li {
+  display: block;
+  text-align: center;
+  vertical-align: middle;
+  float: left;
+  width: 20px;
+  line-height: 40px;
+  font-size: 36px;
+  padding: 3px 5px 3px 5px;
+  border-radius: 5px;
+  margin-top: 1px;
+  margin-right: 35px;
+  font-family: 'Arapey', serif;
+}
 #timer_div {
   display: inline-block;
-  width: 300px;
+  position: relative;
+  width: 240px;
   height: 100px;
   margin-top: 0px;
-  margin-left: 70px;
+  margin-left: 100px;
   text-align: center;
-}
-#timer_div tr {
-  display: inline;
-  font-size: 10px;
-  line-height: 15px;
-  word-wrap: break-word;
-  background-color: red;
 }
 #timer_count {
   display: inline-block;
@@ -131,7 +170,7 @@ body {
   font-family: 'Arapey', serif;
   line-height: 100px;
   font-size: 98px;
-  margin-top: -5px;
+  margin-top: -3px;
 }
 
 /* --- START/STOP BUTTONS --- */
@@ -151,13 +190,16 @@ body {
 #start {
   width: fit-content;
 }
-#stop:hover, #start:hover {
-  opacity: 0.5;
-  cursor: pointer;
-}
 
 /* --- SCRIPT.JS CSS --- */
 
 .highlight {
   background-color: #AB9353;
+}
+.adjust {
+  color: #57652A;
+}
+.hover {
+  opacity: 0.5
+  cursor: pointer;
 }
