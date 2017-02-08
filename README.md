@@ -1,9 +1,9 @@
 # Tea Timer
-## Never forget your tea again
-
-Live version found at www.andyduss.com/teatimer
+## Never forget about your tea again
 
 Tea Timer is a simple timer application developed using HTML, CSS, and Javascript.
+
+Live version found at www.andyduss.com/teatimer
 
 ##Running the application
 1. Simply click the type of tea you want to drink: black, white, or green.
