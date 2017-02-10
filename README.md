@@ -20,3 +20,4 @@ Live version found at www.andyduss.com/teatimer
 6. Improve layout
 7. ~~Add favicon~~
 8. Add header and footer
+9. Mobile Version, See #6 (Media Queries, Responsive Web Design, Viewport)
