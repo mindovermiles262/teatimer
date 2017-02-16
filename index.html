@@ -8,35 +8,28 @@
     <link href="https://fonts.googleapis.com/css?family=Arapey|Della+Respira|Kaushan+Script" rel="stylesheet">
   </head>
   <body>
-    <div id="page_header">
+    <div class="title">
       <h1>Tea Timer</h1>
       <h2>never forget about your tea</h2>
     </div>
-    <div id="wrapper">
-      <div id="tea_header">Select tea type, then click start:</div>
-      <div id="tea_type">
-        <li id="black" class="left tea_button">Black</li>
-        <li id="green" class="center tea_button">Green</li>
-        <li id="white" class="right tea_button">White</li>
+    <div class="wrapper">
+      <div class="header">Select tea type, then click start:</div>
+      <div class="tea_type">
+        <li id="black" class="left tea hover">Black</li>
+        <li id="green" class="center tea hover">Green</li>
+        <li id="white" class="right tea hover">White</li>
       </div>
-      <div id="container">
-        <div id="min_plusminus">
-          <li id="min_plus" class="adjust">+</li>
-          <li id="min_minus" class="adjust">-</li>
-        </div>
-        <div id="timer_div">
-          <li id="timer_count"></li>
-        </div>
-        <div id="sec_plusminus" class="adjust">
-          <li id="sec_plus" class="adjust">+</li>
-          <li id="sec_minus" class="adjust">-</li>
-        </div>
+      <div class="time">
+        <li class="hover" id="time_plus"></li>
+        <li id="timer_count"></li>
+        <li class="hover" id="time_minus"></li>
       </div>
-      <div id="startstop_div">
-        <li id="stop" class="left control">STOP</li>
-        <li id="refresh" class="center control">&#x21bb;</li>
-        <li id="start" class="right control">START</li>
-      </div>
+        <li class="button">
+          <span id="start">&#9654;</span>
+          <span class="hover" id="pause"></span>
+          <span class="disp_right hover" id="resume"></span>
+          <span class="disp_left hover" id="reset"></span>
+        </li>
     </div>
   </body>
   <script type="text/javascript" src="js/script.js"></script>
