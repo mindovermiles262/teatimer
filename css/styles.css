@@ -29,6 +29,7 @@ h2 {
 
 body {
   background-color: #4D2C3D;
+  background: linear-gradient(90deg, #4D2C3D, #AB9353, #155765);
   color: white;
   cursor: default;
   font-family: 'Della Respira', serif;
