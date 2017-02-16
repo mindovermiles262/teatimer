@@ -1,219 +1,149 @@
-$(document).ready(function() {
-	var wrapper_clone = $('#wrapper').clone();
-	var min = 0;
-	var sec = 0;
-	var ready = false;
+// --- HELPER FUNCTIONS --- //
 
-	disp_timer(min, sec);
-
-// hovering
-	$('.tea_button, #start').mouseenter(function() {
-		if (!$(this).hasClass("highlight")) {
-			$( this ).css({"opacity" : "0.5", "cursor" : "pointer"})
-		}
-	})
-	$('.tea_button, #start').mouseleave(function() {
-		$(this).css({"opacity" : "1", "cursor" : "default"})
-	})
-
-// click any tea button
-	$('.tea_button').on("click", function() {
-		$(this).css({"opacity" : "1"})
-		$('.adjust').css({"color" : "white", "cursor" : "pointer"})
-	})
-
-// click black tea button
-	$('#black').on("click", function() {
-		$('.tea_button').removeClass("highlight")
-		$(this).addClass("highlight")
-		min = 4;
-		sec = 30;
-		disp_timer(min, sec);
-		ready = true;
-	})
-
-//click white tea button
-	$('#white').on("click", function() {
-		$('.tea_button').removeClass("highlight")
-		$(this).addClass("highlight")
-		min = 2;
-		sec = 0;
-
-		disp_timer(min, sec);
-		ready = true;
-	})
-
-// click green tea button
-	$('#green').on("click", function() {
-		$('.tea_button').removeClass("highlight")
-		$(this).addClass("highlight")
-		min = 3;
-		sec = 0;
-		disp_timer(min, sec);
-		ready = true;
-	})
-
-// adjust time
-	$('#min_plus').on("click", function() {
-		if (ready) {
-			if (min < 59) {
-				min += 1;
-			} else (min = 59)
-			disp_timer(min, sec);
-		}
-	})
-	$('#min_minus').on("click", function() {
-		if (ready) {
-			if (min > 0) {
-				min -= 1;
-			} else (min = 0)
-			disp_timer(min, sec);
-		}
-	})
-	$('#sec_plus').on("click", function() {
-		if (ready) {
-			if (sec === 55 && min < 59) {
-				min += 1;
-				sec = 0;
-			}
-			else if (sec < 59) {
-				sec += 5;
-			}
-			else (sec = 59)
-			disp_timer(min, sec);
-		}
-	})
-	$('#sec_minus').on("click", function() {
-		if (ready) {
-			if (sec === 0 && min > 0) {
-				min -= 1;
-				sec = 55;
-			}
-			else if (sec > 1) {
-				sec -= 5;
-			} else (sec = 0)
-			disp_timer(min, sec);
-		}
-	})
-
-// click start button, start timer
-	$('#start').one("click", function() {
-		if (ready) {
-			// initialize
-			var start_time = new Date();
-			var minsec = (min*60) + sec
-			var add_time = seconds_to_milliseconds(minsec);
-			var end_time = new Date(start_time.getTime() + add_time);
-			finished = false;
-
-			// adjust hover highlighting
-			$(this).css("opacity", "1")
-			$(this).addClass("highlight")
-			$('.tea_button').off("click")
-			$('.tea_button').mouseenter(function() {
-				$(this).css({"opacity" : "1", "cursor" : "default"})
-			})
-			$('#stop').mouseenter(function() {
-				$(this).css({"opacity" : "0.5", "cursor" : "pointer"})
-			})
-			$('#stop').mouseleave(function() {
-				$(this).css({"opacity" : "1", "cursor" : "default"})
-			})
-
-			// hide time adjust buttons
-			$('.adjust').css({"color" : "#57652A;", "cursor" : "default"})
-
-			// disable tea_buttons
-			$('.tea_buttons').off("click")
-
-			// update timer display
-			update_timer = function() {
-				if (new Date() < end_time) {
-      		var time_left = end_time.getTime() - new Date();
-      		min = new Date(time_left).getMinutes();
-      		sec = new Date(time_left).getSeconds();
-					disp_timer(min, sec);
-				}
-			}
-			// timer countdown
-			run = function() {
-				if (new Date() < end_time) {
-					setInterval(update_timer, 200);
-					$('#stop').on("click", function() {
-						end_time = Date(0);
-					})
-				}
-				else if (new Date() > end_time && finished === false) {
-						alert("Your Tea is Done!")
-						$('#stop').off("click")
-						clearInterval(run)
-						finished = true;
-				}
-			}
-			// start timer countdown
-			setInterval(run, 100);
-
-			// click stop button
-			$('#stop').on("click", function() {
-				ready = false;
-				$(this).mouseenter(function() {
-					$(this).css({"opacity" : "1", "cursor" : "default"})
-				})
-				$(this).css("opacity", "1");
-				$(this).addClass("highlight");
-				disp_timer(min, sec);
-
-				$('#refresh').mouseenter(function() {
-					$(this).css({"opacity" : "0.5", "cursor" : "pointer"})
-				})
-				$('#refresh').mouseleave(function() {
-					$(this).css({"opacity" : "1", "cursor" : "default"})
-				})
-
-				// click refresh button
-				$('#refresh').on("click", function() {
-					/* var min = 0;
-					var sec = 0;
-					disp_timer(min, sec);
-					var ready = false;
-					$('.tea_button').removeClass("highlight")
-					$('.control').removeClass("highlight") */
-					location.reload();
-				})
-			})
-		} // end if
-	}) // end start.click
-
-
-
-
-
-
-}) // end doc.ready
-
-
-// Helper functions to display work, rest, rep, timer numbers
-disp_timer = function(min, sec) {
-	min = minutes_to_milliseconds(min);
-	sec = seconds_to_milliseconds(sec);
+// Display timer
+function disp_timer(ms) {
+	min = Math.floor(ms/60000)
+	ms = ms - (min * 60000);
+	sec = Math.floor(ms/1000)
 	$('#timer_count').empty();
-	$('#timer_count').append(addZero(new Date(min).getMinutes()) + ":" + addZero(new Date(sec).getSeconds()));
+	$('#timer_count').append(addZero(min) + ":" + addZero(sec))
 }
-
-// convert minutes to milliseconds
-minutes_to_milliseconds = function(min) {
-	var mms = min * 60 * 1000;
-	return mms;
-}
-seconds_to_milliseconds = function(sec) {
-	var sms = sec * 1000;
-	return sms;
-}
-
-// add zeros for time display
-addZero = function(i) {
+// Add zeros for time display
+function addZero(i) {
     if (i < 10) {
         i = "0" + i;
     }
     return i;
 }
+
+// updates remaining steep time
+time_left = function(end) {
+	$('#time_plus').html('')
+	$('#time_minus').html('')
+	now = new Date();
+	if (now < end) {
+		remain = end - now;
+		disp_timer(remain);
+	}
+}
+
+
+// --- START document.ready --- //
+$(document).ready(function() {
+	var steep = 0;
+	var ready = false;
+	disp_timer(steep);
+
+	// set steep times by tea
+	function choose_black() {
+		$('#time_plus').html('&#9650;')
+		$('#time_minus').html('&#9660;')
+		$('#start').addClass("hover")
+		steep = 270000;
+		disp_timer(steep);
+		ready = true;
+	}
+	function choose_white() {
+		$('#time_plus').html('&#9650;')
+		$('#time_minus').html('&#9660;')
+		$('#start').addClass("hover")
+		steep = 60000;
+		disp_timer(steep);
+		ready = true;
+	}	
+	function choose_green() {
+		$('#time_plus').html('&#9650;')
+		$('#time_minus').html('&#9660;')
+		$('#start').addClass("hover")
+		steep = 150000;
+		disp_timer(steep);
+		ready = true;
+	}	
+	$('#black').on("click", choose_black);
+	$('#white').on("click", choose_white);
+	$('#green').on("click", choose_green);
+
+	// adjust steep time
+	$('#time_plus').on("click", function() {
+		if (steep < 420000) {
+			steep += 15000;
+		} else (steep = 420000)
+		disp_timer(steep);
+	})
+	$('#time_minus').on("click", function() {
+		if (steep > 15000) {
+			steep -= 15000;
+		} else (steep = 15000)
+		disp_timer(steep);
+	})
+
+	// START function
+	function start(ms) {
+		if (ready) {
+			now = new Date();
+			var done = new Date(now.getTime() + ms)
+			$('#time_plus').html('')
+			$('#time_minus').html('')
+			$('#start').html("");
+			$('#pause').html("&#x7c; &#x7c;");
+			$('.tea').off("click");
+			$('.tea').removeClass("hover");
+			var run = setInterval(function() { time_left(done) }, 100);
+			// PAUSE function
+			$('#pause').click(function() {
+				clearInterval(run);
+				steep_remain = done - new Date();
+				$('#start').html("");
+				$('#pause').html("");
+				$('#resume').html("&#9654;");
+				$('#reset').html("&#x21bb;");
+			})
+		}
+	}
+
+	// RESUME function
+	function resume(ms) {
+		now = new Date();
+		var done = new Date(now.getTime() + ms)
+		$('#start').html("");
+		//$('#pause').html("&#9632;");
+		$('#pause').html("&#x7c; &#x7c;");
+		$('#resume').html("");
+		$('#reset').html("");
+		var run = setInterval(function() { time_left(done) }, 100);
+		// PAUSE function
+		$('#pause').click(function() {
+			clearInterval(run);
+			steep_remain = done - new Date();
+			$('#start').html("");
+			$('#pause').html("");
+			$('#resume').html("&#9654;");
+			$('#reset').html("&#x21bb;");
+		})
+	}
+
+	// RESET function
+	function reset() {
+		ready = false;
+		steep = 0
+		//reset display
+		disp_timer(steep);
+		//reset buttons
+		$('#start').html("&#9654;");
+		$('#pause').html("");
+		$('#resume').html("");
+		$('#reset').html("");
+		$('#black').on("click", choose_black);
+		$('#white').on("click", choose_white);
+		$('#green').on("click", choose_green);
+		$('.tea').addClass("hover");
+	}
+
+	// Button presses
+	$('#start').on("click", function() { start(steep)} );
+	$('#resume').on("click", function () { resume(steep_remain)} );
+	$('#reset').on("click", reset)
+
+}) // end doc.ready
+
+

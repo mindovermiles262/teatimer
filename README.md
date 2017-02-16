@@ -13,11 +13,12 @@ Live version found at www.andyduss.com/teatimer
 
 ##TODO
 1. Add sound at end of timer
-2. Add pause functionality
+2. ~~Add pause functionality~~
 3. ~~Add up and down buttons to adjust time~~
 4. Add URL parameters
 5. Add pie slice shading
-6. Improve layout
+6. ~~Improve layout~~
 7. ~~Add favicon~~
 8. Add header and footer
 9. Mobile Version, See #6 (Media Queries, Responsive Web Design, Viewport)
+10. Find better pause button
