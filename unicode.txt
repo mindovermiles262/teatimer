@@ -1,13 +1,9 @@
 &#9650; Time plus (Triangle pointing up)
 &#9660; Time minus (Triangle pointing down)
-
-&#9632; Stop, Pause (Square)
 &#x21bb; Reset arrow loop
 &#9654; Start (Triangle pointing right)
+&#x23f9; Stop, Pause (Square)
 
 
 
-$('#start').html("&#9654;");
-$('#pause').html("&#x7c; &#x7c;");
-$('#resume').html("&#9654;");
-$('#reset').html("&#x21bb;");
+
