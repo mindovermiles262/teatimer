@@ -16,6 +16,9 @@ function addZero(i) {
     return i;
 }
 
+// play chime
+function play() { document.getElementById("snd").play(); }
+
 // updates remaining steep time
 time_left = function(end) {
 	$('#time_plus').html('')
@@ -23,6 +26,8 @@ time_left = function(end) {
 	now = new Date();
 	if (now < end) {
 		remain = end - now;
+		console.log("remain: ", remain);
+		if (remain < 200) { play(); }
 		disp_timer(remain);
 	}
 }
