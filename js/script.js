@@ -21,19 +21,20 @@ function play() { document.getElementById("snd").play(); }
 
 // updates remaining steep time
 time_left = function(end) {
-	$('#time_plus').html('')
-	$('#time_minus').html('')
 	now = new Date();
 	if (now < end) {
 		remain = end - now;
 		if (remain < 200) { 
 			play(); 
 			$('#pause').html("");
-			$('#reset').text("Your Tea is Done!");	
+			$('#reset').html("Your Tea is Done!");	
 			$('#reset').removeClass("disp_left")
+			$('#reset').removeClass("hover")
 			setTimeout(function() {
 				$('#reset').text("Brew Another Cup?")
-			}, 8000);
+				$('#reset').addClass("hover")
+				$(this).on("click", reset);
+			}, 6000);
 		}
 		disp_timer(remain);
 	}
@@ -94,9 +95,7 @@ $(document).ready(function() {
 		if (ready) {
 			now = new Date();
 			var done = new Date(now.getTime() + ms)
-			$('#time_plus').html('')
-			$('#time_minus').html('')
-			$('#start').html("");
+			$('#time_plus, #time_minus, #start').html('')
 			$('#pause').html("&#x23f9;");
 			$('.tea').off("click");
 			$('.tea').removeClass("hover");
@@ -105,8 +104,7 @@ $(document).ready(function() {
 			$('#pause').click(function() {
 				clearInterval(run);
 				steep_remain = done - new Date();
-				$('#start').html("");
-				$('#pause').html("");
+				$('#start, #pause').html("");
 				$('#resume').html("&#9654;");
 				$('#reset').html("&#x21bb;");
 			})
@@ -127,8 +125,7 @@ $(document).ready(function() {
 		$('#pause').click(function() {
 			clearInterval(run);
 			steep_remain = done - new Date();
-			$('#start').html("");
-			$('#pause').html("");
+			$('#start, #pause').html("");
 			$('#resume').html("&#9654;");
 			$('#reset').html("&#x21bb;");
 		})
@@ -142,9 +139,7 @@ $(document).ready(function() {
 		disp_timer(steep);
 		//reset buttons
 		$('#start').html("&#9654;");
-		$('#pause').html("");
-		$('#resume').html("");
-		$('#reset').html("");
+		$('#pause, #resume, #reset').html("");
 		$('#black').on("click", choose_black);
 		$('#white').on("click", choose_white);
 		$('#green').on("click", choose_green);
