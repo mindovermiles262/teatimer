@@ -29,7 +29,7 @@ Please follow a "fork-and-pull" workflow when Contributing
 7. ~~Add favicon~~
 8. Add header and footer
 9. Mobile Version, See #6 (Media Queries, Responsive Web Design, Viewport)
-10. Find better pause button
+10. ~~Find better pause button~~
 
 ##Copyright
 Copyright 2017 Andy Duss

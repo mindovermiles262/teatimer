@@ -26,8 +26,15 @@ time_left = function(end) {
 	now = new Date();
 	if (now < end) {
 		remain = end - now;
-		console.log("remain: ", remain);
-		if (remain < 200) { play(); }
+		if (remain < 200) { 
+			play(); 
+			$('#pause').html("");
+			$('#reset').text("Your Tea is Done!");	
+			$('#reset').removeClass("disp_left")
+			setTimeout(function() {
+				$('#reset').text("Brew Another Cup?")
+			}, 8000);
+		}
 		disp_timer(remain);
 	}
 }
@@ -90,7 +97,7 @@ $(document).ready(function() {
 			$('#time_plus').html('')
 			$('#time_minus').html('')
 			$('#start').html("");
-			$('#pause').html("&#x7c; &#x7c;");
+			$('#pause').html("&#x23f9;");
 			$('.tea').off("click");
 			$('.tea').removeClass("hover");
 			var run = setInterval(function() { time_left(done) }, 100);
@@ -112,7 +119,7 @@ $(document).ready(function() {
 		var done = new Date(now.getTime() + ms)
 		$('#start').html("");
 		//$('#pause').html("&#9632;");
-		$('#pause').html("&#x7c; &#x7c;");
+		$('#pause').html("&#x23f9;");
 		$('#resume').html("");
 		$('#reset').html("");
 		var run = setInterval(function() { time_left(done) }, 100);
@@ -142,6 +149,7 @@ $(document).ready(function() {
 		$('#white').on("click", choose_white);
 		$('#green').on("click", choose_green);
 		$('.tea').addClass("hover");
+		$('#start').removeClass("hover");
 	}
 
 	// Button presses
