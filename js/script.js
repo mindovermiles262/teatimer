@@ -31,9 +31,9 @@ time_left = function(end) {
 			$('#reset').removeClass("disp_left")
 			$('#reset').removeClass("hover")
 			setTimeout(function() {
+				$('#start').text("")
 				$('#reset').text("Brew Another Cup?")
 				$('#reset').addClass("hover")
-				$(this).on("click", reset);
 			}, 6000);
 		}
 		disp_timer(remain);
