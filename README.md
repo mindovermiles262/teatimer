@@ -3,7 +3,7 @@
 
 Tea Timer is a simple timer application developed using HTML, CSS, and Javascript.
 
-Live version found [here](www.andyduss.com/teatimer)
+Live version found [here](http://www.andyduss.com/teatimer)
 
 ##Running the application
 1. Simply click the type of tea you want to drink: black, white, or green.
