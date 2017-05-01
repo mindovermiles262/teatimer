@@ -2,35 +2,44 @@
 <html>
   <head>
     <title>Tea Time</title>
+
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'> 
+
     <link type="text/css" rel="stylesheet" href="css/styles.css" />
+    <link type='text/css' rel='stylesheet' href='css/mobile.css' />
+
     <link rel="shortcut icon" href="multimedia/favicon.ico" type="image/x-icon">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
     <link href="https://fonts.googleapis.com/css?family=Arapey|Della+Respira|Kaushan+Script" rel="stylesheet">
   </head>
   <body>
-    <div class="title">
-      <h1>Tea Timer</h1>
-      <h2>never forget about your tea</h2>
-    </div>
-    <div class="wrapper">
-      <div class="header">Select tea type, then click start:</div>
-      <div class="tea_type">
-        <li id="black" class="left tea hover">Black</li>
-        <li id="green" class="center tea hover">Green</li>
-        <li id="white" class="right tea hover">White</li>
+
+      <div class="title">
+        <h1>Tea Timer</h1>
+        <h2>never forget about your tea</h2>
       </div>
-      <div class="time">
-        <li class="hover" id="time_plus"></li>
-        <li id="timer_count"></li>
-        <li class="hover" id="time_minus"></li>
+      <div class="wrapper">
+        <div class="header">Select tea type, then click start:</div>
+        <div class="tea_type">
+          <li id="black" class="left tea hover">Black</li>
+          <li id="green" class="center tea hover">Green</li>
+          <li id="white" class="right tea hover">White</li>
+        </div>
+        <div class="time">
+          <li class="hover" id="time_plus"></li>
+          <li id="timer_count"></li>
+          <li class="hover" id="time_minus"></li>
+        </div>
+          <li class="button">
+            <span class="center" id="start">&#9654;</span>
+            <span class="hover center" id="pause"></span>
+            <span class="disp_right hover" id="resume"></span>
+            <span class="disp_left hover" id="reset"></span>
+          </li>
       </div>
-        <li class="button">
-          <span class="center" id="start">&#9654;</span>
-          <span class="hover center" id="pause"></span>
-          <span class="disp_right hover" id="resume"></span>
-          <span class="disp_left hover" id="reset"></span>
-        </li>
-    </div>
+ 
   </body>
   <script type="text/javascript" src="js/script.js"></script>
   <audio id="snd">

@@ -1,0 +1,39 @@
+@media (max-width: 600px) {
+	body {
+		background: red;
+	}
+
+	.title {
+		min-width: 200px;
+		height: 10%;
+		font-size: 1em;
+
+	}
+	.wrapper {
+		min-width: 200px;
+		max-width: 550px;
+		width: 100%;
+		height: auto;
+	}
+
+	.header {
+		font-size: 1.3em;
+		text-align: center;
+	}
+
+	.tea_type li {
+		font-size: 1.5em;
+	}
+
+	.time li {
+		font-size: 4em;
+	}
+
+	#time_plus, #time_minus {
+	  font-size: 3em;
+	}
+
+	.button {
+		font-size: 2em;
+	}
+}
