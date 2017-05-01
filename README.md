@@ -11,7 +11,7 @@ Live version found [here](http://www.andyduss.com/teatimer)
 3. Click START
 4. When timer is finished, a popup will notify you that your tea is done
 
-# Contributing
+## Contributing
 Please follow a "fork-and-pull" workflow when Contributing
 1. Fork the repo on GitHub
 2. Clone the project to your own machine
@@ -28,7 +28,7 @@ Please follow a "fork-and-pull" workflow when Contributing
 6. ~~Improve layout~~
 7. ~~Add favicon~~
 8. Add header and footer
-9. Mobile Version, See #6 (Media Queries, Responsive Web Design, Viewport)
+9. ~~Mobile Version, See #6 (Media Queries, Responsive Web Design, Viewport)~~
 10. ~~Find better pause button~~
 
 ## Copyright
