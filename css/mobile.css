@@ -1,6 +1,8 @@
 @media (max-width: 600px) {
-	body {
-		background: red;
+
+	.mobile_wrapper {
+		margin: 0 auto;
+		width: 300px;
 	}
 
 	.title {
@@ -14,6 +16,8 @@
 		max-width: 550px;
 		width: 100%;
 		height: auto;
+		background: none;
+		/*background-color: #57652A;*/
 	}
 
 	.header {
@@ -23,6 +27,7 @@
 
 	.tea_type li {
 		font-size: 1.5em;
+		border: 1px solid black;
 	}
 
 	.time li {
@@ -36,4 +41,5 @@
 	.button {
 		font-size: 2em;
 	}
+
 }
